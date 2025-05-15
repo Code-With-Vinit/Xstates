@@ -1,4 +1,5 @@
 import {useState,useEffect} from "react";
+import axios from "axios";
 
 
 
@@ -16,35 +17,53 @@ function App() {
     const [city,setCity]=useState([]);
     
     const COUNTRYENDPOINT="https://crio-location-selector.onrender.com/countries";
-    const STATEENDPOINT=`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`;
-    const CITYENDPOINT=`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`;
+    const STATEENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/states`;
+    const CITYENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/state=${encodeURIComponent(selectedState)}/cities`;
 
     useEffect(()=>{
-      async function fetchCountries(){
+       async function fetchCountries(){
         try{
-        const response= await fetch(COUNTRYENDPOINT);
-        const data=await response.json();
-        setCountries(data);
-        console.log(data);
-      }
-      catch(error){
-        console.error("Error fetching data",error.message);
-    }
-  }
-    fetchCountries();
+          const response=await axios.get(COUNTRYENDPOINT);
+          setCountries(response.data);
+        }
+        catch(error)
+        {
+          console.error("Error fetching data: ",error.message);
+        }
+       }
+       fetchCountries();
     },[]);
 
     useEffect(()=>{
-      fetch(STATEENDPOINT).then((response)=>response.json()).then((data)=>{
-        setState(data);
-      }).catch((error)=>console.error("Error fetching data: ",error))
-    },[selectedCountry])
+       if (!selectedCountry) return;
+      async function fetchStates(){
+        try{
+          const response=await axios.get(STATEENDPOINT);
+          setState(response.data);
+        }
+        catch(error)
+        {
+          console.error("Error fetching data: ",error.message);
+        }
+       }
+       fetchStates();
+    },[selectedCountry]);
 
     useEffect(()=>{
-      fetch(CITYENDPOINT).then((response)=>response.json()).then((data)=>{
-        setCity(data);
-      }).catch((error)=>console.error("Error fetching data: ",error))
-    },[selectedCountry, selectedState])
+      if (!selectedCountry || !selectedState) return;
+      async function fetchCities(){
+        try{
+          const response=await axios.get(CITYENDPOINT);
+          setCity(response.data);
+        }
+        catch(error)
+        {
+          console.error("Error fetching data: ",error.message);
+        }
+       }
+       fetchCities();
+  }
+  ,[selectedCountry, selectedState]);
 
 
     
