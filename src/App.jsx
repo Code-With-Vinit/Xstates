@@ -86,7 +86,7 @@ function App() {
   return (
     <>
       <select style={{width:"350px", height:"25px",margin:"30px"}} onChange={e=>handleCountry(e)}>
-        <option value="someOption">Select Country</option>
+        <option value="">Select Country</option>
         {
           countries && countries!==undefined?
           countries.map((ctr)=>{
@@ -99,7 +99,7 @@ function App() {
       
 
       <select style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry} onChange={e=>handleState(e)} >
-        <option value="someOption" >Select State</option>
+        <option value="" >Select State</option>
         {
           state && state!==undefined?
           state.map((ctr)=>{
@@ -112,7 +112,7 @@ function App() {
      
 
       <select style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState} onChange={e=>handleCity(e)}>
-        <option value="someOption">Select City</option>
+        <option value="">Select City</option>
         {
           city && city!==undefined?
           city.map((ctr)=>{
