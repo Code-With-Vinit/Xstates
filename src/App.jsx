@@ -20,10 +20,19 @@ function App() {
     const CITYENDPOINT=`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`;
 
     useEffect(()=>{
-      fetch(COUNTRYENDPOINT).then((response)=>response.json()).then((data)=>{
+      async function fetchCountries(){
+        try{
+        const response= await fetch(COUNTRYENDPOINT);
+        const data=await response.json();
         setCountries(data);
-      }).catch((error)=>console.error("Error fetching data: ",error))
-    },[])
+        console.log(data);
+      }
+      catch(error){
+        console.error("Error fetching data",error.message);
+    }
+  }
+    fetchCountries();
+    },[]);
 
     useEffect(()=>{
       fetch(STATEENDPOINT).then((response)=>response.json()).then((data)=>{
