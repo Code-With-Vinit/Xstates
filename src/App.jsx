@@ -63,7 +63,7 @@ function App() {
        }
        fetchCities();
   }
-  ,[selectedCountry, selectedState]);
+  ,[selectedState]);
 
 
     
@@ -85,39 +85,39 @@ function App() {
 
   return (
     <>
-      <select  id="country-select" data-testid="country-select" style={{width:"350px", height:"25px",margin:"30px"}} onChange={e=>handleCountry(e)}>
+      <select  id="country-select"  value={selectedCountry} data-testid="country-select" style={{width:"350px", height:"25px",margin:"30px"}} onChange={e=>handleCountry(e)}>
         <option value="">Select Country</option>
         {
           countries && countries!==undefined?
           countries.map((ctr)=>{
             return(
-            <option key={ctr} value= {ctr}>{ctr}</option>
+            <option key={ctr} id={ctr} value= {ctr}>{ctr}</option>
             )
           }):"No Country"
         }   
       </select>
       
 
-      <select id="state-select" data-testid="state-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry} onChange={e=>handleState(e)} >
+      <select id="state-select" value={selectedState} data-testid="state-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry} onChange={e=>handleState(e)} >
         <option value="" >Select State</option>
         {
           state && state!==undefined?
           state.map((ctr)=>{
             return(
-            <option key={ctr} value={ctr}>{ctr}</option>
+            <option key={ctr} id={ctr} value={ctr}>{ctr}</option>
             )
           }):"No State"
         }   
       </select>
      
 
-      <select id="city-select" data-testid="city-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState} onChange={e=>handleCity(e)}>
+      <select id="city-select" value={selectedCity} data-testid="city-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState} onChange={e=>handleCity(e)}>
         <option value="">Select City</option>
         {
           city && city!==undefined?
           city.map((ctr)=>{
             return(
-            <option key={ctr} value={ctr}>{ctr}</option>
+            <option key={ctr} id={ctr} value={ctr}>{ctr}</option>
             )
           }):"No City"
         }   
