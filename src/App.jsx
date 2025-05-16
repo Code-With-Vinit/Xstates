@@ -95,7 +95,8 @@ function App() {
 
 
   return (
-    <>
+    <div style={{textAlign:"center"}}>
+      <h1 >Select Location</h1>
       <select  id="country-select"  value={selectedCountry} data-testid="country-select" style={{width:"350px", height:"25px",margin:"30px"}} onChange={e=>handleCountry(e)}>
         <option value="">Select Country</option>
         {
@@ -135,7 +136,7 @@ function App() {
           <h3 style={{textAlign:"center"}}>You selected {selectedCity}, {selectedState}, {selectedCountry}</h3>:""
         }
 
-    </>
+    </div>
   )
 }
 
