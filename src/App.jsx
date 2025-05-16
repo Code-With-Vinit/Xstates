@@ -85,7 +85,7 @@ function App() {
 
   return (
     <>
-      <select name="country" id="country" style={{width:"350px", height:"25px",margin:"30px"}} onChange={e=>handleCountry(e)}>
+      <select  id="country-select" data-testid="country-select" style={{width:"350px", height:"25px",margin:"30px"}} onChange={e=>handleCountry(e)}>
         <option value="">Select Country</option>
         {
           countries && countries!==undefined?
@@ -98,7 +98,7 @@ function App() {
       </select>
       
 
-      <select name="state" id="state" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry} onChange={e=>handleState(e)} >
+      <select id="state-select" data-testid="state-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry} onChange={e=>handleState(e)} >
         <option value="" >Select State</option>
         {
           state && state!==undefined?
@@ -111,7 +111,7 @@ function App() {
       </select>
      
 
-      <select name="city" id="city" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState} onChange={e=>handleCity(e)}>
+      <select id="city-select" data-testid="city-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState} onChange={e=>handleCity(e)}>
         <option value="">Select City</option>
         {
           city && city!==undefined?
