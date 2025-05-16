@@ -16,13 +16,14 @@ function App() {
     const [state,setState]=useState([]);
     const [city,setCity]=useState([]);
     
-    const COUNTRYENDPOINT="https://crio-location-selector.onrender.com/countries";
-    const STATEENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/states`;
-    const CITYENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/state=${encodeURIComponent(selectedState)}/cities`;
+    
+    
+   
 
-    useEffect(()=>{
-       async function fetchCountries(){
-        try{
+
+    var fetchCountries= async()=>{
+      const COUNTRYENDPOINT="https://crio-location-selector.onrender.com/countries";
+      try{
           const response=await axios.get(COUNTRYENDPOINT);
           setCountries(response.data);
         }
@@ -30,28 +31,27 @@ function App() {
         {
           console.error("Error fetching data: ",error.message);
         }
-       }
-       fetchCountries();
-    },[]);
+    };
 
-    useEffect(()=>{
-       if (!selectedCountry) return;
-      async function fetchStates(){
+    var fetchStates= async()=>{
+      const STATEENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/states`;
+      if(selectedCountry)
+      {
         try{
-          const response=await axios.get(STATEENDPOINT);
-          setState(response.data);
-        }
-        catch(error)
-        {
-          console.error("Error fetching data: ",error.message);
-        }
-       }
-       fetchStates();
-    },[selectedCountry]);
+            const response=await axios.get(STATEENDPOINT);
+            setState(response.data);
+          }
+          catch(error)
+          {
+            console.error("Error fetching data: ",error.message);
+          }
+      }
+    };
 
-    useEffect(()=>{
-      if (!selectedCountry || !selectedState) return;
-      async function fetchCities(){
+    var fetchCities=async()=>{
+       const CITYENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/state=${encodeURIComponent(selectedState)}/cities`;
+       if(selectedCountry && selectedState)
+       {
         try{
           const response=await axios.get(CITYENDPOINT);
           setCity(response.data);
@@ -61,6 +61,17 @@ function App() {
           console.error("Error fetching data: ",error.message);
         }
        }
+    };
+
+    useEffect(()=>{
+       fetchCountries();
+    },[]);
+
+    useEffect(()=>{
+       fetchStates();
+    },[selectedCountry]);
+
+    useEffect(()=>{
        fetchCities();
   }
   ,[selectedState]);
