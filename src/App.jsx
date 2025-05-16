@@ -22,7 +22,7 @@ function App() {
 
 
     var fetchCountries= async()=>{
-      const COUNTRYENDPOINT="https://crio-location-selector.onrender.com/countries";
+      let COUNTRYENDPOINT="https://crio-location-selector.onrender.com/countries";
       try{
           const response=await axios.get(COUNTRYENDPOINT);
           setCountries(response.data);
@@ -34,9 +34,10 @@ function App() {
     };
 
     var fetchStates= async()=>{
-      const STATEENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/states`;
+    
       if(selectedCountry)
       {
+        let STATEENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/states`;
         try{
             const response=await axios.get(STATEENDPOINT);
             setState(response.data);
@@ -49,9 +50,9 @@ function App() {
     };
 
     var fetchCities=async()=>{
-       const CITYENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/state=${encodeURIComponent(selectedState)}/cities`;
        if(selectedCountry && selectedState)
        {
+        let CITYENDPOINT=`https://crio-location-selector.onrender.com/country=${encodeURIComponent(selectedCountry)}/state=${encodeURIComponent(selectedState)}/cities`;
         try{
           const response=await axios.get(CITYENDPOINT);
           setCity(response.data);
