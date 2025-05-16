@@ -88,25 +88,23 @@ function App() {
       <select  id="country-select"  value={selectedCountry} data-testid="country-select" style={{width:"350px", height:"25px",margin:"30px"}} onChange={e=>handleCountry(e)}>
         <option value="">Select Country</option>
         {
-          countries && countries!==undefined?
           countries.map((ctr)=>{
             return(
             <option key={ctr} id={ctr} value= {ctr}>{ctr}</option>
             )
-          }):"No Country"
+          })
         }   
       </select>
       
 
       <select id="state-select" value={selectedState} data-testid="state-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry} onChange={e=>handleState(e)} >
         <option value="" >Select State</option>
-        {
-          state && state!==undefined?
+        {  
           state.map((ctr)=>{
             return(
             <option key={ctr} id={ctr} value={ctr}>{ctr}</option>
             )
-          }):"No State"
+          })
         }   
       </select>
      
@@ -114,12 +112,11 @@ function App() {
       <select id="city-select" value={selectedCity} data-testid="city-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState} onChange={e=>handleCity(e)}>
         <option value="">Select City</option>
         {
-          city && city!==undefined?
           city.map((ctr)=>{
             return(
             <option key={ctr} id={ctr} value={ctr}>{ctr}</option>
             )
-          }):"No City"
+          })
         }   
       </select>
 
