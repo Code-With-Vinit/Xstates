@@ -103,7 +103,7 @@ function App() {
         {
           countries.map((ctr)=>{
             return(
-            <option key={ctr} id={ctr} value= {ctr}>{ctr}</option>
+            <option key={ctr} value= {ctr}>{ctr}</option>
             )
           })
         }   
@@ -115,7 +115,7 @@ function App() {
         {  
           state.map((ctr)=>{
             return(
-            <option key={ctr} id={ctr} value={ctr}>{ctr}</option>
+            <option key={ctr} value={ctr}>{ctr}</option>
             )
           })
         }   
@@ -127,7 +127,7 @@ function App() {
         {
           city.map((ctr)=>{
             return(
-            <option key={ctr} id={ctr} value={ctr}>{ctr}</option>
+            <option key={ctr} value={ctr}>{ctr}</option>
             )
           })
         }   
