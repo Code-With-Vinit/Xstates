@@ -81,11 +81,19 @@ function App() {
     
 
     const handleCountry=(e)=>{
-       setSelectedCountry(e.target.value);
+      const selected = e.target.value;
+      setSelectedCountry(selected);
+      setSelectedState(""); // Clear previous state
+      setSelectedCity("");  // Clear previous city
+      setState([]);         // Clear previous state list
+      setCity([]);   
     }
 
     const handleState=(e)=>{
-       setSelectedState(e.target.value);
+      const selected = e.target.value;
+      setSelectedState(selected);
+      setSelectedCity("");  // Clear previous city
+      setCity([]); 
     }
 
     const handleCity=(e)=>{
