@@ -133,8 +133,8 @@ function App() {
         }   
       </select>
 
-        {(selectedCountry && selectedState && selectedCity)? 
-          <h3 style={{textAlign:"center"}}>You selected {selectedCity}, {selectedState}, {selectedCountry}</h3>:""
+        {(selectedCountry && selectedState && selectedCity) &&
+          (<h3 style={{textAlign:"center"}}>You selected {selectedCity}, {selectedState}, {selectedCountry}</h3>)
         }
 
     </div>
