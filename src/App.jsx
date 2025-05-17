@@ -30,6 +30,7 @@ function App() {
         catch(error)
         {
           console.error("Error fetching data: ",error.message);
+          setCountries([]);
         }
     };
 
@@ -45,6 +46,7 @@ function App() {
           catch(error)
           {
             console.error("Error fetching data: ",error.message);
+            setState([]);
           }
       }
     };
@@ -60,6 +62,7 @@ function App() {
         catch(error)
         {
           console.error("Error fetching data: ",error.message);
+          setCity([]);
         }
        }
     };
@@ -118,7 +121,7 @@ function App() {
       </select>
       
 
-      <select id="state-select" value={selectedState} data-testid="state-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry} onChange={e=>handleState(e)} >
+      <select id="state-select" value={selectedState} data-testid="state-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedCountry || state.length === 0} onChange={e=>handleState(e)} >
         <option value="" >Select State</option>
         {  
           state.map((ctr)=>{
@@ -130,7 +133,7 @@ function App() {
       </select>
      
 
-      <select id="city-select" value={selectedCity} data-testid="city-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState} onChange={e=>handleCity(e)}>
+      <select id="city-select" value={selectedCity} data-testid="city-select" style={{width:"350px", height:"25px",margin:"30px"}} disabled={!selectedState || city.length === 0} onChange={e=>handleCity(e)}>
         <option value="">Select City</option>
         {
           city.map((ctr)=>{
@@ -141,10 +144,10 @@ function App() {
         }   
       </select>
         
-        <h3 style={{textAlign:"center"}}>
+        <h3 data-testid="selected-location" style={{textAlign:"center"}}>
 
         {selectedCountry && selectedState && selectedCity ?
-          `You selected {selectedCity}, {selectedState}, {selectedCountry}`:""
+          `You selected ${selectedCity}, ${selectedState}, ${selectedCountry}`:""
         }
 
         </h3>
